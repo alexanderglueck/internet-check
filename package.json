@@ -1,0 +1,14 @@
+{
+  "name": "internet-check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/restart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^2.0.0"
+  }
+}

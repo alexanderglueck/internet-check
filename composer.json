@@ -1,0 +1,16 @@
+{
+  "name": "alexanderglueck/internet-check",
+  "authors": [
+    {
+      "name": "Alexander Glück",
+      "email": "github@alexanderglueck.at"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Check\\": "src"
+    }
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,6 @@
+node_modules
+vendor
+internetcheck.log
+check.lock
+chrome_data/*
+!chrome_data/.gitkeep
