@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer');
 
+const chromiumExecutable = '/usr/bin/chromium-browser';
+
 const username = 'admin';
 const password = '';
 
@@ -22,19 +24,26 @@ const selectors = {
 
 (async () => {
     // Basic setup
-    const browser = await puppeteer.launch({userDataDir: './chrome_data'});
+    const browser = await puppeteer.launch({
+        executablePath: chromiumExecutable,
+        userDataDir: './chrome_data'
+    });
     const page = await browser.newPage();
 
     // Go to login page
     await page.goto(pages.login, {waitUntil: 'networkidle2'});
 
     // Empty username field and input username
-    await page.evaluate(() => document.querySelector(selectors.fields.username).value = "")
-    await page.type(fields.username, username);
+    await page.evaluate(({selectors}) => {
+        document.querySelector(selectors.fields.username).value = ""
+    }, {selectors})
+    await page.type(selectors.fields.username, username);
 
     // Empty password field and input password
-    await page.evaluate(() => document.querySelector(selectors.fields.password).value = "")
-    await page.type(fields.password, password);
+    await page.evaluate(({selectors}) => {
+        document.querySelector(selectors.fields.password).value = ""
+    }, {selectors})
+    await page.type(selectors.fields.password, password);
 
     // Login
     const [loginResponse] = await Promise.all([

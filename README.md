@@ -11,9 +11,11 @@ composer install
 npm install
 ```
 
+Also make sure you have the chromium-browser installed.
+
 ## Usage
 
-Adjust the constants in `src/InternetCheck.php` and `src/restart.js` to change your credentials.
+Adjust the constants in `src/InternetCheck.php` and `src/restart.js` to change your credentials / settings.
 
 Either set up a cronjob to run the init script every minute or manually call the script when your internet is down.
 

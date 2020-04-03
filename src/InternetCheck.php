@@ -18,12 +18,29 @@ class InternetCheck
      * Timeout in minutes until the router is restarted.
      * Should be less than LOCKFILE_TIMEOUT.
      */
-    const RESTART_TIMEOUT = 10;
+    const RESTART_TIMEOUT = 3;
 
     /*
      * Timeout in seconds before internet connectivity is checked again.
      */
     const BASE_TIMEOUT = 10;
+
+    /*
+     * IP that is being accessed to check for internet connectivity.
+     */
+    const IP = '1.1.1.1';
+
+    /*
+     * Full path to your node installation
+     * e.g. /usr/local/bin/node
+     */
+    const PATH_TO_NODE = '/usr/local/bin/node';
+
+    /*
+     * Full path to your internet-check directory. The directory that contains the check.php file.
+     * e.g. /home/pi/internet-check/
+     */
+    const PATH_TO_REPO = '/home/pi/internet-check/';
 
     public function run()
     {
@@ -95,7 +112,7 @@ class InternetCheck
 
     private function hasInternetConnectivity()
     {
-        return (bool)@fsockopen('www.google.com', 80, $iErrno, $sErrStr, 5);
+        return (bool)@fsockopen(self::IP, 80, $iErrno, $sErrStr, 5);
     }
 
     public function retryConnection()
@@ -142,6 +159,6 @@ class InternetCheck
 
     private function restartRouter()
     {
-        exec('node src/restart.js');
+        exec('cd ' . self::PATH_TO_REPO . ' && ' . self::PATH_TO_NODE . ' src/restart.js');
     }
 }
